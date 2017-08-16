@@ -146,6 +146,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5A00BBB91F41EB9D00D7521F /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5A61C53B1E17BC3C00D25B24 /* WBMainViewController.swift */,
+				5A61C53D1E17BC5B00D25B24 /* WBNavigationViewController.swift */,
+			);
+			name = MainViewController;
+			sourceTree = "<group>";
+		};
 		5A61C4F51E17B7DC00D25B24 = {
 			isa = PBXGroup;
 			children = (
@@ -256,8 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				5A82F1631E1D4C86003E1FC5 /* VisitorView */,
-				5A61C53B1E17BC3C00D25B24 /* WBMainViewController.swift */,
-				5A61C53D1E17BC5B00D25B24 /* WBNavigationViewController.swift */,
+				5A00BBB91F41EB9D00D7521F /* MainViewController */,
 				5A61C53F1E17BC7700D25B24 /* WBBaseViewController.swift */,
 			);
 			path = Main;

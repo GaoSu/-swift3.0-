@@ -25,6 +25,7 @@ class WBVisitorView: UIView {
     
 //MARK:私有空间
     
+    fileprivate lazy var maskIconView = UIImageView(image:(UIImage.init(named: "visitordiscover_feed_mask_smallicon")))
     /// 图像视图
    fileprivate lazy var iconView = UIImageView(image: #imageLiteral(resourceName: "visitordiscover_feed_image_smallicon"))
     
@@ -32,7 +33,7 @@ class WBVisitorView: UIView {
    fileprivate lazy var houseView = UIImageView(image:#imageLiteral(resourceName: "visitordiscover_feed_image_house"))
     
     /// 提示文字 如果不行了 再加上冒号类型
-    fileprivate lazy var tipLabel : UILabel = UILabel.yw_label(withText: "关注人有惊喜", fontSize: 14, color: UIColor.darkGray)
+    fileprivate lazy var tipLabel : UILabel = UILabel.yw_label(withText: "关注人有惊喜,回来看看有惊喜啊啊啊啊啊啊", fontSize: 14, color: UIColor.darkGray)
     
     /// 注册按钮
     fileprivate lazy var registerBtn : UIButton = UIButton.yw_textButton("注册", fontSize: 16, normalColor: UIColor.orange, highlightedColor: UIColor.black, backgroundImageName: "common_button_white_disable")
@@ -57,8 +58,11 @@ extension WBVisitorView{
     
         backgroundColor = UIColor.white
         
+        let margin = 20.0
+        
         //1.添加控件
         addSubview(iconView)
+        addSubview(maskIconView)
         addSubview(houseView)
         addSubview(tipLabel)
         addSubview(registerBtn)
@@ -71,10 +75,64 @@ extension WBVisitorView{
         addConstraint(NSLayoutConstraint(item: iconView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: iconView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: -50))
         
+        
         addConstraint(NSLayoutConstraint(item: houseView, attribute: .centerX, relatedBy: .equal, toItem: iconView, attribute: .centerX, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: houseView, attribute: .centerY, relatedBy: .equal, toItem: iconView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        
+        
+        addConstraint(NSLayoutConstraint(item: tipLabel, attribute: .centerX, relatedBy: .equal, toItem: iconView, attribute: .centerX, multiplier: 1.0, constant: CGFloat(0)))
+         addConstraint(NSLayoutConstraint(item: tipLabel, attribute: .top , relatedBy: .equal, toItem: iconView, attribute: .bottom, multiplier: 1.0, constant: CGFloat(margin)))
+        addConstraint(NSLayoutConstraint(item: tipLabel, attribute:.width , relatedBy: .equal, toItem: nil, attribute:.notAnAttribute , multiplier: 1.0, constant: CGFloat(236)))
+        
+//        注册按钮
+        addConstraint(NSLayoutConstraint(item: registerBtn, attribute: .top , relatedBy: .equal, toItem: tipLabel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(margin)))
+        addConstraint(NSLayoutConstraint(item: registerBtn, attribute:.left , relatedBy: .equal, toItem: tipLabel, attribute:.left , multiplier: 1.0, constant: CGFloat(0)))
+          addConstraint(NSLayoutConstraint(item: registerBtn, attribute:.width , relatedBy: .equal, toItem: nil, attribute:.notAnAttribute , multiplier: 1.0, constant: CGFloat(100)))
+        
+//        addConstraint(NSLayoutConstraint(item: registerBtn, attribute:.height , relatedBy: .equal, toItem: nil, attribute:.notAnAttribute , multiplier: 1.0, constant: CGFloat(44)))
+        
+        //        登录按钮
+        addConstraint(NSLayoutConstraint(item:loginBtn, attribute: .top , relatedBy: .equal, toItem: tipLabel, attribute: .bottom, multiplier: 1.0, constant: CGFloat(margin)))
+        addConstraint(NSLayoutConstraint(item: loginBtn, attribute:.right , relatedBy: .equal, toItem: tipLabel, attribute:.right , multiplier: 1.0, constant: CGFloat(0)))
+        addConstraint(NSLayoutConstraint(item: loginBtn, attribute:.width , relatedBy: .equal, toItem: nil, attribute:.notAnAttribute , multiplier: 1.0, constant: CGFloat(100)))
+        
+//         addConstraint(NSLayoutConstraint(item: loginBtn, attribute:.height , relatedBy: .equal, toItem: registerBtn, attribute:.height , multiplier: 1.0, constant: 0.0))
+//    遮罩图片
+        let viewDict = ["maskIconView":maskIconView,"loginBtn":loginBtn] as [String : Any]
+//        let metrics = ["spacing":50]
+        
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[maskIconView]-0-|", options: [], metrics: nil, views: viewDict))
 
+        addConstraint(NSLayoutConstraint(item: maskIconView, attribute:.bottom , relatedBy: .equal, toItem: tipLabel, attribute:.top , multiplier: 1.0, constant: 15))
+        
+//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[maskIconView]-(spacing)-[loginBtn]|", options: [], metrics: metrics, views: viewDict))
+        
         
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,6 +8,10 @@
 
 import UIKit
 
+
+/// 1.extension 中不能有属性
+
+/// 2. extension 不能重写父类的方法。重写是子类的职责，扩展只是对类的扩展
 class WBBaseViewController: UIViewController {
 
     var userLogOn = false
@@ -21,8 +25,12 @@ class WBBaseViewController: UIViewController {
     /// 表格视图
     var tableView : UITableView?
     
+    /// 刷新控件
+    var refreshContror : UIRefreshControl?
+    
     /// 是否上拉
     var isPullUp = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +48,8 @@ class WBBaseViewController: UIViewController {
     
     /// 加载数据，让子类重写吧
     func loadData() -> () {
-        
+//        如果子类不实现任何方法，默认关闭刷新
+        refreshContror?.endRefreshing()
     }
     
     deinit {
@@ -60,7 +69,7 @@ extension WBBaseViewController{
     automaticallyAdjustsScrollViewInsets = false
         
     setupNavigationBar()
-    
+    setupTableView()
     userLogOn ? setupTableView() : setupVistorView()
   
         
@@ -86,11 +95,18 @@ extension WBBaseViewController{
         tableView?.delegate = self
         tableView?.dataSource = self
         
-        tableView?.backgroundColor = UIColor.cyan
+//        tableView?.backgroundColor = UIColor.cyan
         //内容设置缩进 去除nav和tabbar的高度
         tableView?.contentInset = UIEdgeInsetsMake(nagvgationBar.bounds.height, 0,tabBarController?.tabBar.yw_height ?? 49, 0)
         //导航条的缩进
         tableView?.scrollIndicatorInsets = tableView!.contentInset
+        
+//        
+        refreshContror = UIRefreshControl.init()
+        
+        tableView?.addSubview(refreshContror!)
+        
+        refreshContror?.addTarget(self, action:#selector(loadData), for: .valueChanged)
         
     
     }
@@ -129,6 +145,7 @@ extension WBBaseViewController:UITableViewDelegate,UITableViewDataSource{
         return 20
     }
     
+///
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let section = tableView.numberOfSections - 1
@@ -140,6 +157,8 @@ extension WBBaseViewController:UITableViewDelegate,UITableViewDataSource{
         if (row == count - 1) && !isPullUp {
             print("上拉刷新")
             isPullUp = true
+//            开始刷新
+            loadData()
             
         }
         

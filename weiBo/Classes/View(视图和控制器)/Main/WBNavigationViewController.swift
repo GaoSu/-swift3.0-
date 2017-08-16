@@ -26,6 +26,7 @@ class WBNavigationViewController: UINavigationController {
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
      // 如果不是跟控制器就hide
         if childViewControllers.count > 0 {
+            
             viewController.hidesBottomBarWhenPushed = true
             
             if let vc = (viewController as? WBBaseViewController) {

@@ -13,12 +13,45 @@ import UIKit
 
 class WBHomeViewController: WBBaseViewController {
 
+    
+   fileprivate lazy var statusList = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadData()
         // Do any additional setup after loading the view.
     }
     
+    
+    /// 加载数据
+    override func loadData() {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//            
+//        };
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+          
+//            加载数据
+            for i in 0..<10 {
+                
+                if self.isPullUp {
+                
+                    self.statusList.append("上拉\(i)")
+                }else{
+                
+                self.statusList.insert(i.description, at: 0)
+                    
+                }
+            }
+//       结束刷新
+        self.refreshContror?.endRefreshing()
+        self.isPullUp = false
+            
+        self.tableView?.reloadData()
+            
+        }
+    }
     /// 显示好友
     func showFirends(){
     
@@ -29,11 +62,19 @@ class WBHomeViewController: WBBaseViewController {
 // MARK: - tableView相关
 extension WBHomeViewController{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return statusList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       return UITableViewCell()
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath);
+        cell.textLabel?.text = statusList[indexPath.row]
+        return cell
+    
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 }
 
