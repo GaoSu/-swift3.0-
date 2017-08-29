@@ -26,6 +26,10 @@ class WBHomeViewController: WBBaseViewController {
     
     /// 加载数据
     override func loadData() {
+        
+        WBNetWorkManager.shared.statusList { (list, isSuccess) in
+            print(list ?? "nil")
+        }
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 //            
 //        };

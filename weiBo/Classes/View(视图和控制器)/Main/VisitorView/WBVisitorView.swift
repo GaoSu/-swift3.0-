@@ -10,27 +10,14 @@ import UIKit
 
 class WBVisitorView: UIView {
 
-    
-    override init(frame: CGRect) {
-       super.init(frame: frame)
-        
-        setupUI()
-        
-
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-//MARK:私有空间
+    //MARK:私有空间
     
     fileprivate lazy var maskIconView = UIImageView(image:(UIImage.init(named: "visitordiscover_feed_mask_smallicon")))
     /// 图像视图
-   fileprivate lazy var iconView = UIImageView(image: #imageLiteral(resourceName: "visitordiscover_feed_image_smallicon"))
+    fileprivate lazy var iconView = UIImageView(image: #imageLiteral(resourceName: "visitordiscover_feed_image_smallicon"))
     
     /// 房子
-   fileprivate lazy var houseView = UIImageView(image:#imageLiteral(resourceName: "visitordiscover_feed_image_house"))
+    fileprivate lazy var houseView = UIImageView(image:#imageLiteral(resourceName: "visitordiscover_feed_image_house"))
     
     /// 提示文字 如果不行了 再加上冒号类型
     fileprivate lazy var tipLabel : UILabel = UILabel.yw_label(withText: "关注人有惊喜,回来看看有惊喜啊啊啊啊啊啊", fontSize: 14, color: UIColor.darkGray)
@@ -40,6 +27,66 @@ class WBVisitorView: UIView {
     
     /// 登录按钮
     fileprivate lazy var loginBtn : UIButton = UIButton.yw_textButton("登录", fontSize: 16, normalColor: UIColor.darkGray, highlightedColor: UIColor.black, backgroundImageName: "common_button_white_disable")
+    
+ 
+    
+    
+    var visitorInfo = [String : AnyObject](){
+        
+        didSet{
+            
+            guard let imageName = visitorInfo["imageName"],let message = visitorInfo["message"] else { return  }
+            
+             //        /设置消息
+            tipLabel.text = message as? String
+            
+//           如果首页已经有了，就不需要设置了
+            if imageName as! String == "" {
+//                开始旋转图标
+                startAnimation()
+                return;
+            }
+//            
+            iconView.image = UIImage(named: imageName as! String)
+//            其他视图不需要小房子和遮罩视图
+            houseView.isHidden = true
+            maskIconView.isHidden = true
+            
+        }
+       
+        
+    }
+    
+    override init(frame: CGRect) {
+       super.init(frame: frame)
+        
+        setupUI()
+        
+    
+    
+ 
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+  
+    
+    /// 转圈的动画
+    ///
+    /// - Returns: 0
+    func startAnimation(){
+        
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.toValue = 2 * Double.pi
+        animation.repeatCount = MAXFLOAT
+        animation.duration = 5
+//        完成之后是否删除动画
+        animation.isRemovedOnCompletion = false
+        iconView.layer.add(animation, forKey: nil)
+    }
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -51,13 +98,17 @@ class WBVisitorView: UIView {
 
 }
 
+
+
+
+
 // MARK: - 设置界面
 extension WBVisitorView{
     
     fileprivate func setupUI(){
     
-        backgroundColor = UIColor.white
-        
+        backgroundColor = UIColor.yw_color(withHex: 0xEDEDED)
+        tipLabel.textAlignment = .center
         let margin = 20.0
         
         //1.添加控件
@@ -104,7 +155,7 @@ extension WBVisitorView{
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[maskIconView]-0-|", options: [], metrics: nil, views: viewDict))
 
-        addConstraint(NSLayoutConstraint(item: maskIconView, attribute:.bottom , relatedBy: .equal, toItem: tipLabel, attribute:.top , multiplier: 1.0, constant: 15))
+        addConstraint(NSLayoutConstraint(item: maskIconView, attribute:.bottom , relatedBy: .equal, toItem: tipLabel, attribute:.top , multiplier: 1.0, constant: 70))
         
 //        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[maskIconView]-(spacing)-[loginBtn]|", options: [], metrics: metrics, views: viewDict))
         

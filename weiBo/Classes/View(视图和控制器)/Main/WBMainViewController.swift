@@ -45,24 +45,41 @@ class WBMainViewController: UITabBarController {
     /// 设置所有的子控制器
    fileprivate  func setupChildController(){
     
-        let array = [["clsName":"WBHomeViewController", "title":"首页","imageName":"home"],["clsName":"WBMessageViewController", "title":"消息","imageName":"message_center"],
-                     ["clsNamge":"VC"],["clsName":"WBSDiscoverViewController", "title":"发现","imageName":"discover"],["clsName":"WBProfileViewController", "title":"我","imageName":"profile"]]
-        
+
+    guard let pathString = (Bundle.main .path(forResource: "demo", ofType: "plist")),let array = NSArray(contentsOfFile: pathString) as? [[String :Any]]  else {
+        return
+    }
+    
+//    let pathString = (Bundle.main .path(forResource: "demo", ofType: nil))
+//    let array = NSArray(contentsOfFile: pathString)
+    
+    
+//    let array:[[String :Any]] = [
+//            ["clsName":"WBHomeViewController", "title":"首页","imageName":"home","visitorViewInfo":["imageName":"","message":"关注一些人，回这里看看有什么惊喜"]],
+//            ["clsName":"WBMessageViewController", "title":"消息","imageName":"message_center","visitorViewInfo":["imageName":"visitordiscover_image_message","message":"登陆后，别人评论你的微博，发给你的消息，都会在这里收到通知"]],
+//             
+//            ["clsNamge":"VC"],["clsName":"WBSDiscoverViewController", "title":"发现","imageName":"discover","visitorViewInfo":["imageName":"visitordiscover_image_message","message":"登陆后，最新、最热的微博尽在掌握中，不会再于实事潮流擦肩而过"]],
+//            ["clsName":"WBProfileViewController", "title":"我","imageName":"profile","visitorViewInfo":["imageName":"visitordiscover_image_profile","message":"登陆后，你的微博、相册、个人资料会显示在这里，展示给别人"]]
+//    ]
+//    
+//    (array as NSArray).write(toFile: "/Users/liu/Desktop/demo.plist", atomically: true)
         var arrayM = [UIViewController]()
         for dict in array {
-            arrayM.append(controller(dict: dict))
+            arrayM.append(controller(dict: dict ))
         }
        
         viewControllers = arrayM
    }
 
     //MARK: 从字典中获得控制器
-  fileprivate  func controller(dict:[String: String]) -> UIViewController{
+  fileprivate  func controller(dict:[String: Any]) -> UIViewController{
         
-    guard let clsName = dict["clsName"],
-        let title = dict["title"],
-        let  imageName = dict["imageName"],
-        let cls = NSClassFromString(Bundle.main.nameSpace + "." + clsName) as? UIViewController.Type
+    guard let clsName = dict["clsName"] as? String,
+        let title = dict["title"] as? String,
+        let  imageName = dict["imageName"] as? String,
+        let cls = NSClassFromString(Bundle.main.nameSpace + "." + clsName) as? WBBaseViewController.Type,
+      let visitorViewInfo = dict["visitorViewInfo"] as? [String : String]
+    
         else{
             
         return UIViewController()
@@ -72,9 +89,11 @@ class WBMainViewController: UITabBarController {
         //创建视图控制器
         let vc = cls.init()
         vc.title = title
-        
+        vc.vistorViewDictory = visitorViewInfo
         vc.tabBarItem.image = UIImage(named: "tabbar_" + imageName)
         vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" + imageName + "_selected")?.withRenderingMode(.alwaysOriginal)
+//    设置访客视图的字典
+    
         //改变字体颜色和大小
         vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orange], for: .highlighted)
         vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 12)], for: .normal)

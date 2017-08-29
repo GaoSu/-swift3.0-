@@ -22,6 +22,8 @@ class WBBaseViewController: UIViewController {
     /// 自定义导航栏
     lazy var nagvgationBar : UINavigationBar = UINavigationBar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.yw_screenWidth(), height: 64))
     
+    var vistorViewDictory = [String : String]()
+    
     /// 表格视图
     var tableView : UITableView?
     
@@ -82,6 +84,8 @@ extension WBBaseViewController{
         let vistorView = WBVisitorView(frame: view.bounds)
        
         view.insertSubview(vistorView, belowSubview: nagvgationBar)
+        
+        vistorView.visitorInfo = vistorViewDictory as [String : AnyObject]
         
     }
     
