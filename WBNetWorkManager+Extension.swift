@@ -15,16 +15,13 @@ extension WBNetWorkManager{
         
      
         let urlString = "https://api.weibo.com/2/statuses/home_timeline.json"
-        let params = ["access_token":"2.00ml8IrFsDUjxC114979b3900Ur2RT"]
+//        let params = ["access_token":"2.00ml8IrFsDUjxC114979b3900Ur2RT"]
         
-        request(method: .POST, URLString: urlString, parameters: params as [String : AnyObject]) { (json, isSuccess) in
-            print(json ??  "");
-            
+        tokenRequest(method: .POST, URLString: urlString, parameters: nil) { (json, isSuccess) in
             let result = json?["status"] as? [[String : AnyObject]]
             
             completion(result, isSuccess)
         }
-        
         
     }
     

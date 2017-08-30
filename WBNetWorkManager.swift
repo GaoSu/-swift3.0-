@@ -20,7 +20,38 @@ class WBNetWorkManager: AFHTTPSessionManager {
 //    这就是单例
     static let shared = WBNetWorkManager()
     
-    func request(method:WBHTTPMethod, URLString: String,parameters: [String :AnyObject],compltion:@escaping (_ json:AnyObject?,_ isSuccess:Bool)->()){
+    
+//    访问的令牌，都是基于token
+    var accessToken : String? = ""
+    
+    func tokenRequest(method:WBHTTPMethod, URLString: String,parameters: [String :AnyObject]?,compltion:@escaping (_ json:AnyObject?,_ isSuccess:Bool)->())  {
+//       0> 处理token
+        guard accessToken != nil else {
+            print("没有token，需要登录")
+            
+            compltion(nil, false)
+            return
+        }
+        
+//        1> 判断参数字典是否存在，
+        var parameters = parameters
+        
+        if parameters == nil {
+            parameters = [String : AnyObject]()
+        }
+        
+//        2>设置字典
+        parameters?["access_token"] = accessToken as AnyObject
+        
+//        发起正真的请求
+        
+        request(method: method, URLString: URLString, parameters: parameters, compltion: compltion)
+        
+    }
+    
+    func request(method:WBHTTPMethod, URLString: String,parameters: [String :AnyObject]?,compltion:@escaping (_ json:AnyObject?,_ isSuccess:Bool)->()){
+        
+        
       
         let wbSuccess = { (task:URLSessionDataTask,json:AnyObject?)->() in
         
