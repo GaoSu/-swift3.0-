@@ -22,13 +22,15 @@ class WBNetWorkManager: AFHTTPSessionManager {
     
     
 //    访问的令牌，都是基于token
-    var accessToken : String? = ""
+//    token 的过期处理,也可以在这里处理多账号登录 //长时间没有登录需要从新登录
+    
+    var accessToken : String? = "2.00G4abYG0iodTc16cfad29f65tuMUD"
     
     func tokenRequest(method:WBHTTPMethod, URLString: String,parameters: [String :AnyObject]?,compltion:@escaping (_ json:AnyObject?,_ isSuccess:Bool)->())  {
 //       0> 处理token
         guard accessToken != nil else {
             print("没有token，需要登录")
-            
+//                FIXME：发送通知。需要登录
             compltion(nil, false)
             return
         }
@@ -57,8 +59,16 @@ class WBNetWorkManager: AFHTTPSessionManager {
         
             compltion(json, true)
         }
+//        失败回调
+        
         let wbFailure = { (task:URLSessionDataTask?,error:Error)->() in
             
+            if (task?.response as! HTTPURLResponse).statusCode == 403 {
+                print("Token 过期了")
+                
+//                FIXME：发送通知。token过期
+            }
+            print("请求失败")
             compltion(nil, false)
         }
         

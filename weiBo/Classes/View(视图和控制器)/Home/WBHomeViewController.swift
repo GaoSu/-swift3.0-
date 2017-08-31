@@ -15,6 +15,7 @@ class WBHomeViewController: WBBaseViewController {
 
     
    fileprivate lazy var statusList = [String]()
+   fileprivate lazy var wbStatusListViewModel = WBStatusListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,34 +28,44 @@ class WBHomeViewController: WBBaseViewController {
     /// 加载数据
     override func loadData() {
         
-        WBNetWorkManager.shared.statusList { (list, isSuccess) in
-            print(list ?? "nil")
+        
+        wbStatusListViewModel.loadStatus { (isSuccess) in
+           
+            //       结束刷新
+            self.refreshContror?.endRefreshing()
+            self.isPullUp = false
+            
+            self.tableView?.reloadData()
         }
+        
+//        WBNetWorkManager.shared.statusList { (list, isSuccess) in
+//            print(list ?? "nil")
+//        }
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 //            
 //        };
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-          
-//            加载数据
-            for i in 0..<10 {
-                
-                if self.isPullUp {
-                
-                    self.statusList.append("上拉\(i)")
-                }else{
-                
-                self.statusList.insert(i.description, at: 0)
-                    
-                }
-            }
-//       结束刷新
-        self.refreshContror?.endRefreshing()
-        self.isPullUp = false
-            
-        self.tableView?.reloadData()
-            
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//          
+////            加载数据
+//            for i in 0..<10 {
+//                
+//                if self.isPullUp {
+//                
+//                    self.statusList.append("上拉\(i)")
+//                }else{
+//                
+//                self.statusList.insert(i.description, at: 0)
+//                    
+//                }
+//            }
+////       结束刷新
+//        self.refreshContror?.endRefreshing()
+//        self.isPullUp = false
+//            
+//        self.tableView?.reloadData()
+//            
+//        }
     }
     /// 显示好友
     func showFirends(){
@@ -66,13 +77,13 @@ class WBHomeViewController: WBBaseViewController {
 // MARK: - tableView相关
 extension WBHomeViewController{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return statusList.count
+        return wbStatusListViewModel.statusList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath);
-        cell.textLabel?.text = statusList[indexPath.row]
+        cell.textLabel?.text = wbStatusListViewModel.statusList[indexPath.row].text
         return cell
     
     }
