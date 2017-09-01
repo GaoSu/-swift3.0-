@@ -31,6 +31,7 @@ class WBStatusListViewModel {
                 return
             }
 //           2.拼接数据
+            print("刷新了\(array.count) 条")
             self.statusList += array
 //          3.回调
             compltion(isSuccess)

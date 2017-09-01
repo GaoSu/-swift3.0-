@@ -19,12 +19,20 @@ class WBNetWorkManager: AFHTTPSessionManager {
     
 //    这就是单例
     static let shared = WBNetWorkManager()
+        
+        
+        
     
+    
+
+//        .responseSerializer.acceptableContentTypes.setByAddingObject:"text/plain"];
     
 //    访问的令牌，都是基于token
 //    token 的过期处理,也可以在这里处理多账号登录 //长时间没有登录需要从新登录
     
     var accessToken : String? = "2.00G4abYG0iodTc16cfad29f65tuMUD"
+    
+    
     
     func tokenRequest(method:WBHTTPMethod, URLString: String,parameters: [String :AnyObject]?,compltion:@escaping (_ json:AnyObject?,_ isSuccess:Bool)->())  {
 //       0> 处理token
@@ -45,22 +53,20 @@ class WBNetWorkManager: AFHTTPSessionManager {
 //        2>设置字典
         parameters?["access_token"] = accessToken as AnyObject
         
-//        发起正真的请求
+        //        发起正真的请求
         
         request(method: method, URLString: URLString, parameters: parameters, compltion: compltion)
         
     }
     
+    
     func request(method:WBHTTPMethod, URLString: String,parameters: [String :AnyObject]?,compltion:@escaping (_ json:AnyObject?,_ isSuccess:Bool)->()){
         
+        let wbSuccess = { (task:URLSessionDataTask,json:Any?)->() in
         
-      
-        let wbSuccess = { (task:URLSessionDataTask,json:AnyObject?)->() in
-        
-            compltion(json, true)
+            compltion(json as AnyObject, true)
         }
 //        失败回调
-        
         let wbFailure = { (task:URLSessionDataTask?,error:Error)->() in
             
             if (task?.response as! HTTPURLResponse).statusCode == 403 {
@@ -72,15 +78,20 @@ class WBNetWorkManager: AFHTTPSessionManager {
             compltion(nil, false)
         }
         
-
         if method == .POST {
-             post(URLString, parameters: parameters, progress: nil, success: wbSuccess as? (URLSessionDataTask, Any?) -> Void, failure: wbFailure)
-        }else{
-        
-             get(URLString, parameters: parameters, progress: nil, success: wbSuccess as? (URLSessionDataTask, Any?) -> Void, failure: wbFailure)
             
+             post(URLString, parameters: parameters, progress: nil, success: wbSuccess  , failure: wbFailure)
+        }else{
+            
+//            get(URLString, parameters: parameters, progress: nil, success: { (task, json) in
+//                print(json ?? "")
+//            }, failure: { (task,error) in
+//               print(error)
+//            })
+           
+            get(URLString, parameters: parameters, progress: nil, success: wbSuccess, failure: wbFailure)
         }
-      
+        
     }
     
 }
