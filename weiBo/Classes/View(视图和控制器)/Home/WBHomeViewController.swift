@@ -28,14 +28,19 @@ class WBHomeViewController: WBBaseViewController {
     /// 加载数据
     override func loadData() {
         
-        
-        wbStatusListViewModel.loadStatus { (isSuccess) in
+
+        wbStatusListViewModel.loadStatus(pullUp: self.isPullUp) { (isSuccess,shouldRefresh) in
            
             //       结束刷新
             self.refreshContror?.endRefreshing()
+//            回复上拉加载更多的标记
             self.isPullUp = false
+        
+            if shouldRefresh {
             
-            self.tableView?.reloadData()
+                self.tableView?.reloadData()
+                
+            }
         }
         
 //        WBNetWorkManager.shared.statusList { (list, isSuccess) in

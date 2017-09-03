@@ -12,7 +12,9 @@ class WBMainViewController: UITabBarController {
 
  //WARNING: 为什么永不了私有的变量
   /// 发布按钮
-  fileprivate lazy var pushlish:UIButton = UIButton.yw_imageButton("tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
+   fileprivate lazy var pushlish:UIButton = UIButton.yw_imageButton("tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
+    
+    fileprivate var timer : Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,15 @@ class WBMainViewController: UITabBarController {
         setupChildController()
         
         setupPublishBtn()
+        
+        setupTimer()
+        
+        
         // Do any additional setup after loading the view.
+    }
+    
+    deinit {
+        timer?.invalidate()
     }
     
     /// 设置设备方向//子控制也会禁止横屏。
@@ -33,9 +43,42 @@ class WBMainViewController: UITabBarController {
     @objc func pushlishAction() -> () {
      print("发布")
     
-    
+        let vc = UIViewController()
+        
+        vc.view.backgroundColor = UIColor.yw_random()
+        
+        let  nav = UINavigationController(rootViewController: vc)
+        
+        present(nav, animated: true) { 
+            
+        }
     }
 }
+
+
+extension WBMainViewController{
+ 
+
+    fileprivate func setupTimer(){
+     
+        timer = Timer.scheduledTimer(timeInterval: 5, target:self, selector:#selector(getunreadCount), userInfo: nil, repeats: true)
+     
+        
+    }
+    
+    @objc func getunreadCount(){
+    
+        // 获取微博的未读数
+        WBNetWorkManager.shared.unreadCount { (count) in
+            print("有\(count)条微博未读")
+//            设置首页的角标
+            self.tabBar.items?[0].badgeValue = count > 0 ? "\(count)" : nil
+//            
+            UIApplication.shared.applicationIconBadgeNumber = count
+        }
+    }
+}
+
 //MARK:end
 
 //类似于 oc 的分类，不能定义属性//这个地方要对extension 进行理解 不能重写父类本类方法，子类能重写，extension只负责扩展

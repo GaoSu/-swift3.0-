@@ -25,7 +25,7 @@ class WBBaseViewController: UIViewController {
     var vistorViewDictory = [String : String]()
     
     /// 表格视图
-    var tableView : UITableView?
+    var tableView : UITableView? //<! sss
     
     /// 刷新控件
     var refreshContror : UIRefreshControl?
@@ -90,6 +90,7 @@ extension WBBaseViewController{
     }
     
     /// 为子类方便
+    /** 子类 */
     func setupTableView(){
     
         tableView = UITableView(frame: view.bounds, style: .plain)
@@ -114,6 +115,8 @@ extension WBBaseViewController{
         
     
     }
+    
+    /// 设置导航栏
     
     /// 设置导航栏
     private func setupNavigationBar(){
