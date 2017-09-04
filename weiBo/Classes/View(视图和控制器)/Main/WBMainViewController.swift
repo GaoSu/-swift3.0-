@@ -25,6 +25,7 @@ class WBMainViewController: UITabBarController {
         
         setupTimer()
         
+        delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -56,6 +57,45 @@ class WBMainViewController: UITabBarController {
 }
 
 
+//MARK:UITabBarControllerDelegate
+
+extension WBMainViewController : UITabBarControllerDelegate{
+//已经选中
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+//        1>获取控制器在数组中的索引
+        let index = (childViewControllers as NSArray).index(of: viewController)
+        
+//        2>判断当前是首页，点击的也是首页
+        if selectedIndex == 0 && index == selectedIndex {
+            
+            print("点击首页")
+//           3> 让表格滚动到顶部
+//           a) 先获取vc
+            let nav = childViewControllers.first as! UINavigationController
+            let vc = nav.childViewControllers.first as! WBHomeViewController
+//            b）滚动到顶部
+            vc.tableView?.setContentOffset(CGPoint.init(x: 0, y: -64), animated: true)
+//            4>s刷新数据 - 增加延迟，是保证表格先滚动到顶部再刷新
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: { 
+                vc.loadData()
+            })
+//             5> 清楚badge 
+            self.tabBar.items?.first?.badgeValue = nil
+            UIApplication.shared.applicationIconBadgeNumber = 0
+            
+        }
+        
+    }
+// 将要选中
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool{
+      return true
+    }
+
+    
+}
+
+//MARK:设置计时器
 extension WBMainViewController{
  
 

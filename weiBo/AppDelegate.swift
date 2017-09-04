@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+//      #available 是检测设备的版本
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+                print("授权" + (success ? "成功":"失败"))
+            }
+        } else {
+            
+            let notifySettings = UIUserNotificationSettings(types: [.alert,.badge, .sound,], categories: nil)
+            application.registerUserNotificationSettings(notifySettings)
+            // Fallback on earlier versions
+        }
+        
+       
+        
+        
         //创建window
         window = UIWindow()
         window?.backgroundColor = UIColor.white
