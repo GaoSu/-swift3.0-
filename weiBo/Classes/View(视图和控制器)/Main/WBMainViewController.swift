@@ -27,6 +27,9 @@ class WBMainViewController: UITabBarController {
         
         delegate = self
         
+//        登录的通知
+        NotificationCenter.default.addObserver(self, selector: #selector(userLogin(n:)), name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -39,6 +42,14 @@ class WBMainViewController: UITabBarController {
         return.portrait
     }
     
+    
+//   用户登录的方法
+    @objc fileprivate func userLogin(n:Notification){
+    
+        print("用户登录")
+    
+    
+    }
     
     /// 发布的方法
     @objc func pushlishAction() -> () {
@@ -108,6 +119,11 @@ extension WBMainViewController{
     
     @objc func getunreadCount(){
     
+        if !WBNetWorkManager.shared.userLogOn {
+//            没有登录就不用往下面进行了
+            return
+        }
+        
         // 获取微博的未读数
         WBNetWorkManager.shared.unreadCount { (count) in
             print("有\(count)条微博未读")

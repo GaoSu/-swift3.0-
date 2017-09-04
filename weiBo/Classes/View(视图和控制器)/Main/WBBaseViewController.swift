@@ -14,7 +14,7 @@ import UIKit
 /// 2. extension 不能重写父类的方法。重写是子类的职责，扩展只是对类的扩展
 class WBBaseViewController: UIViewController {
 
-    var userLogOn = true
+//    var userLogOn = true
     
     
     lazy var navItem = UINavigationItem()
@@ -72,7 +72,7 @@ extension WBBaseViewController{
         
     setupNavigationBar()
     setupTableView()
-    userLogOn ? setupTableView() : setupVistorView()
+    WBNetWorkManager.shared.userLogOn ? setupTableView() : setupVistorView()
   
         
         

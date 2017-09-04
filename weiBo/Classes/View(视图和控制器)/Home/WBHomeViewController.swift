@@ -19,8 +19,9 @@ class WBHomeViewController: WBBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadData()
+//登录才加载数据
+        WBNetWorkManager.shared.userLogOn ? loadData() : ()
+     
         // Do any additional setup after loading the view.
     }
     

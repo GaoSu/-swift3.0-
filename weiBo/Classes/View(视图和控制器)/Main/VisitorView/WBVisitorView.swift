@@ -62,8 +62,8 @@ class WBVisitorView: UIView {
         
         setupUI()
         
-    
-    
+        registerBtn.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
+        loginBtn.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
  
     }
     
@@ -73,6 +73,22 @@ class WBVisitorView: UIView {
     }
     
   
+    /// 注册
+    func registerAction() {
+        
+        print("注册")
+        
+    }
+    
+    /// 登录
+    func loginAction() {
+        
+     print("登录")
+//    发送全局的通知
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
+    
+    }
+    
     
     /// 转圈的动画
     ///

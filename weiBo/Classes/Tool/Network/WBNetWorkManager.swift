@@ -23,10 +23,12 @@ class WBNetWorkManager: AFHTTPSessionManager {
     
 //    访问的令牌，都是基于token
 //    token 的过期处理,也可以在这里处理多账号登录 //长时间没有登录需要从新登录
-    
-    var accessToken : String? = "2.00G4abYG0iodTc16cfad29f65tuMUD"
+    var accessToken : String? // = "2.00G4abYG0iodTc16cfad29f65tuMUD"
     var uid :String? = ""
     
+    var userLogOn : Bool {
+         return  (accessToken != nil) ? true : false
+    }
     
     
     func tokenRequest(method:WBHTTPMethod, URLString: String,parameters: [String :AnyObject]?,compltion:@escaping (_ json:AnyObject?,_ isSuccess:Bool)->())  {

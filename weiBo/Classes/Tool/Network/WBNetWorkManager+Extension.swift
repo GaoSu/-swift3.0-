@@ -50,7 +50,7 @@ extension WBNetWorkManager{
             return
         }
        
-        let URLString = ""
+        let URLString = "https://rm.api.weibo.com/2/remind/unread_count.json"
         let params = ["uid" : uid]
         
         

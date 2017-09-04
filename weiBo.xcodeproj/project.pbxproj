@@ -37,6 +37,7 @@
 		5ABBBFB21E1BA365000BD56A /* UIView+CZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBBFA21E1BA365000BD56A /* UIView+CZAddition.m */; };
 		5ABBBFB31E1BA365000BD56A /* UIView+JKFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBBFA41E1BA365000BD56A /* UIView+JKFrame.m */; };
 		5ABBBFB41E1BA365000BD56A /* UIViewController+CZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBBFA61E1BA365000BD56A /* UIViewController+CZAddition.m */; };
+		5AC7DBF31F5D27300044E4D1 /* WeiBoCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7DBF21F5D27300044E4D1 /* WeiBoCommon.swift */; };
 		5ADED54D1F56F95C0056BFEE /* WBNetWorkManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADED54B1F56F95C0056BFEE /* WBNetWorkManager+Extension.swift */; };
 		5ADED54E1F56F95C0056BFEE /* WBNetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADED54C1F56F95C0056BFEE /* WBNetWorkManager.swift */; };
 		5ADED5511F56F9A80056BFEE /* WBStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADED5501F56F9A80056BFEE /* WBStatus.swift */; };
@@ -114,6 +115,7 @@
 		5ABBBFA51E1BA365000BD56A /* UIViewController+CZAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CZAddition.h"; sourceTree = "<group>"; };
 		5ABBBFA61E1BA365000BD56A /* UIViewController+CZAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CZAddition.m"; sourceTree = "<group>"; };
 		5ABBBFBA1E1BA47C000BD56A /* WB-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WB-Bridge.h"; sourceTree = "<group>"; };
+		5AC7DBF21F5D27300044E4D1 /* WeiBoCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeiBoCommon.swift; sourceTree = "<group>"; };
 		5ADED54B1F56F95C0056BFEE /* WBNetWorkManager+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WBNetWorkManager+Extension.swift"; sourceTree = "<group>"; };
 		5ADED54C1F56F95C0056BFEE /* WBNetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNetWorkManager.swift; sourceTree = "<group>"; };
 		5ADED5501F56F9A80056BFEE /* WBStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatus.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				5A61C52F1E17BB6F00D25B24 /* Classes */,
 				5A61C5011E17B7DC00D25B24 /* AppDelegate.swift */,
+				5AC7DBF21F5D27300044E4D1 /* WeiBoCommon.swift */,
 				5ABBBFBA1E1BA47C000BD56A /* WB-Bridge.h */,
 				5A61C5081E17B7DC00D25B24 /* Assets.xcassets */,
 				5A3413BB1F493E2200BC6614 /* demo.plist */,
@@ -594,6 +597,7 @@
 				5ABBBFAD1E1BA365000BD56A /* UIButton+CZAddition.m in Sources */,
 				5A82F16A1E1D4CEF003E1FC5 /* WBVisitorView.swift in Sources */,
 				5A61C53C1E17BC3C00D25B24 /* WBMainViewController.swift in Sources */,
+				5AC7DBF31F5D27300044E4D1 /* WeiBoCommon.swift in Sources */,
 				5ADED54E1F56F95C0056BFEE /* WBNetWorkManager.swift in Sources */,
 				5ABBBFA91E1BA365000BD56A /* NSObject+CZRuntime.m in Sources */,
 				5A6471B71E1C842200D0099F /* UIBarButtonItem+Extension.swift in Sources */,
