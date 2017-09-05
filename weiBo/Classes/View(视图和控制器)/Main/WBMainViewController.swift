@@ -48,6 +48,10 @@ class WBMainViewController: UITabBarController {
     
         print("用户登录")
     
+        let nav = UINavigationController(rootViewController: WBOAuthViewController())
+        
+        present(nav, animated: true, completion: nil)
+        
     
     }
     

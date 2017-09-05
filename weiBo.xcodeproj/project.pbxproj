@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C6F72A29DE1D05848FF6DCF /* Pods_weiBo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC53425561B06BC8CF44B4CE /* Pods_weiBo.framework */; };
+		5A004F6C1F5D92DD0001F208 /* WBOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A004F6B1F5D92DD0001F208 /* WBOAuthViewController.swift */; };
 		5A3413BC1F493E2200BC6614 /* demo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A3413BB1F493E2200BC6614 /* demo.plist */; };
 		5A61C5021E17B7DC00D25B24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61C5011E17B7DC00D25B24 /* AppDelegate.swift */; };
 		5A61C5091E17B7DC00D25B24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A61C5081E17B7DC00D25B24 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		042A6562291D87C270A0EE54 /* Pods-weiBo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weiBo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-weiBo/Pods-weiBo.debug.xcconfig"; sourceTree = "<group>"; };
 		3C6B231A97A4F1258EE34E5E /* Pods-weiBo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weiBo.release.xcconfig"; path = "Pods/Target Support Files/Pods-weiBo/Pods-weiBo.release.xcconfig"; sourceTree = "<group>"; };
+		5A004F6B1F5D92DD0001F208 /* WBOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBOAuthViewController.swift; sourceTree = "<group>"; };
 		5A3413BB1F493E2200BC6614 /* demo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = demo.plist; path = ../demo.plist; sourceTree = "<group>"; };
 		5A61C4FE1E17B7DC00D25B24 /* weiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A61C5011E17B7DC00D25B24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +158,14 @@
 				3C6B231A97A4F1258EE34E5E /* Pods-weiBo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5A004F6A1F5D92BA0001F208 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				5A004F6B1F5D92DD0001F208 /* WBOAuthViewController.swift */,
+			);
+			path = OAuth;
 			sourceTree = "<group>";
 		};
 		5A00BBB91F41EB9D00D7521F /* MainViewController */ = {
@@ -264,6 +274,7 @@
 		5A61C5351E17BB6F00D25B24 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				5A004F6A1F5D92BA0001F208 /* OAuth */,
 				5A82F1631E1D4C86003E1FC5 /* VisitorView */,
 				5A00BBB91F41EB9D00D7521F /* MainViewController */,
 				5A61C53F1E17BC7700D25B24 /* WBBaseViewController.swift */,
@@ -603,6 +614,7 @@
 				5A6471B71E1C842200D0099F /* UIBarButtonItem+Extension.swift in Sources */,
 				5A61C5421E17BCC900D25B24 /* WBHomeViewController.swift in Sources */,
 				5A61C53E1E17BC5B00D25B24 /* WBNavigationViewController.swift in Sources */,
+				5A004F6C1F5D92DD0001F208 /* WBOAuthViewController.swift in Sources */,
 				5ABBBFB11E1BA365000BD56A /* UIScreen+CZAddition.m in Sources */,
 				5ABBBFAC1E1BA365000BD56A /* NSString+CZPath.m in Sources */,
 				5ABBBFAB1E1BA365000BD56A /* NSString+CZHash.m in Sources */,
