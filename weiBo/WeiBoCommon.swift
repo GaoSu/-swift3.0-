@@ -8,6 +8,17 @@
 
 import Foundation
 
+//MARK:应用程勋的信息
+
+/// 应用程序的ID
+let WBAppKey = "132"
+
+/// 应用的加密信息
+let WBAppSecret = ""
+
+/// 回调地址
+let WBRedirectUrl = "hhtp://baidu.com"
+
 
 
 //MARK:-全局通知定义

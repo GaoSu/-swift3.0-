@@ -18,18 +18,30 @@ class WBOAuthViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
         title = "登录新浪微博"
+        
+        webView.delegate = self
 //        设置导航栏  在这里可以在后面加上isBack 之后就会有返回的箭头
-        
-        
 
 //       
         navigationItem.leftBarButtonItem =  UIBarButtonItem(title: "返回", fontSize: 16, target: self, action: #selector(close), isBack: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", fontSize: 16, target: self, action: #selector(autoFill), isBack: false)
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//加载授权页面
 
+        let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(WBAppKey)&redirect_uri=\(WBRedirectUrl)"
+        
+        guard let url = URL.init(string: urlString) else {
+            return
+        }
+        let request = URLRequest(url: url)//这里的强制解包没事
+        
+        webView.loadRequest(request)
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -39,12 +51,18 @@ class WBOAuthViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+//    MARK:自动填充
+    
+    /// 自动填充-webView 的注入，直接通过 js 修改 ‘修改本地浏览器中’ 缓存的内容
+    
+    @objc func autoFill(){
+    
+        let js = "document.geElementById('userId').value = 'daoge12';" + "document.getElementById('passwd').value = 'pqzm123$';"
+//        让webview直行js
+        webView.stringByEvaluatingJavaScript(from: js)
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -56,3 +74,14 @@ class WBOAuthViewController: UIViewController {
     */
 
 }
+
+
+
+// MARK: - UIWebViewDelegate
+extension WBOAuthViewController : UIWebViewDelegate{
+    
+    
+}
+
+
+

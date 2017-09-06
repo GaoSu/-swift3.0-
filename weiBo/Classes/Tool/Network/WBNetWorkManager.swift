@@ -40,6 +40,7 @@ class WBNetWorkManager: AFHTTPSessionManager {
             return
         }
         
+    
 //        1> 判断参数字典是否存在，
         var parameters = parameters
         
