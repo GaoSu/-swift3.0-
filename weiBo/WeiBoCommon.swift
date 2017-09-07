@@ -11,13 +11,13 @@ import Foundation
 //MARK:应用程勋的信息
 
 /// 应用程序的ID
-let WBAppKey = "132"
+let WBAppKey = "568565340"
 
 /// 应用的加密信息
-let WBAppSecret = ""
+let WBAppSecret = "9f64187db48727e30599945386f36f63"
 
 /// 回调地址
-let WBRedirectUrl = "hhtp://baidu.com"
+let WBRedirectUrl = "http://baidu.com"
 
 
 

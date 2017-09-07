@@ -18,22 +18,31 @@ enum WBHTTPMethod {
 class WBNetWorkManager: AFHTTPSessionManager {
     
 //    这就是单例
-    static let shared = WBNetWorkManager()
+    static let shared :WBNetWorkManager = {
+    
+        let instance = WBNetWorkManager()
+//    设置反序列化支持的类型
+        instance.responseSerializer.acceptableContentTypes?.insert("text/plain")
+    
+        return instance
+    }()
 
     
 //    访问的令牌，都是基于token
 //    token 的过期处理,也可以在这里处理多账号登录 //长时间没有登录需要从新登录
-    var accessToken : String? // = "2.00G4abYG0iodTc16cfad29f65tuMUD"
-    var uid :String? = ""
+//    var accessToken : String? // = "2.00G4abYG0iodTc16cfad29f65tuMUD"
+//    var uid :String? = "6008150368"
+    
+     lazy var userAccount = WBUserAccount()
     
     var userLogOn : Bool {
-         return  (accessToken != nil) ? true : false
+         return  (userAccount.access_token != nil) ? true : false
     }
     
     
     func tokenRequest(method:WBHTTPMethod, URLString: String,parameters: [String :AnyObject]?,compltion:@escaping (_ json:AnyObject?,_ isSuccess:Bool)->())  {
 //       0> 处理token
-        guard accessToken != nil else {
+        guard userAccount.access_token != nil else {
             print("没有token，需要登录")
 //                FIXME：发送通知。需要登录
             compltion(nil, false)
@@ -49,7 +58,7 @@ class WBNetWorkManager: AFHTTPSessionManager {
         }
         
 //        2>设置字典
-        parameters?["access_token"] = accessToken as AnyObject
+        parameters?["access_token"] = userAccount.access_token as AnyObject
         
         //        发起正真的请求
         

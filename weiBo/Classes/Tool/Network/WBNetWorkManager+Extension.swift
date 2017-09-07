@@ -46,7 +46,8 @@ extension WBNetWorkManager{
 //        if uid == nil {
 //            return
 //        }
-        guard uid != nil else {
+        
+        guard let uid = userAccount.uid else {
             return
         }
        
@@ -68,7 +69,31 @@ extension WBNetWorkManager{
     
 }
 
+//MARK:授权相关
+extension WBNetWorkManager{
 
+    func loadAccessToken(code:String,compltion:@escaping (_ isSuccess:Bool)->()) {
+        
+        let urlString = "https://api.weibo.com/oauth2/access_token"
+        let params = ["client_id":WBAppKey,"client_secret":WBAppSecret,"grant_type":"authorization_code","code":code,"redirect_uri":WBRedirectUrl]
+        request(method: .POST, URLString: urlString, parameters: params as [String : AnyObject]) { (json, isSuccess) in
+            
+            print(json ?? "数据为空")
+            
+          // 直接利用字典设置userAccount的属性
+//            self.userAccount.yy_modelSet(with: [AnyHashable : Any])
+            self.userAccount.yy_modelSet(with: (json as? [String : AnyObject]) ?? [:])
+            
+            print("---\(self.userAccount)")
+            
+            self.userAccount .saveUserAccount()
+            
+            compltion(isSuccess)
+            
+        }
+    }
+    
+}
 
 
 

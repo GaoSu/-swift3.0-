@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 /// 通过webView 加载授权页
 class WBOAuthViewController: UIViewController {
 
@@ -16,6 +16,7 @@ class WBOAuthViewController: UIViewController {
         view = webView
         
         view.backgroundColor = UIColor.white
+        webView.scrollView.isScrollEnabled = false
         
         title = "登录新浪微博"
         
@@ -24,7 +25,7 @@ class WBOAuthViewController: UIViewController {
 
 //       
         navigationItem.leftBarButtonItem =  UIBarButtonItem(title: "返回", fontSize: 16, target: self, action: #selector(close), isBack: true)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", fontSize: 16, target: self, action: #selector(autoFill), isBack: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "自动填充", fontSize: 16, target: self, action: #selector(autoFill), isBack: false)
         
     }
     
@@ -48,6 +49,7 @@ class WBOAuthViewController: UIViewController {
     
     @objc func close(){
     
+        SVProgressHUD.dismiss()
         dismiss(animated: true, completion: nil)
     
     }
@@ -58,7 +60,9 @@ class WBOAuthViewController: UIViewController {
     
     @objc func autoFill(){
     
-        let js = "document.geElementById('userId').value = 'daoge12';" + "document.getElementById('passwd').value = 'pqzm123$';"
+        let js = "document.getElementById('userId').value = '13794408277'; " +
+        "document.getElementById('passwd').value = 'qwer123';"
+
 //        让webview直行js
         webView.stringByEvaluatingJavaScript(from: js)
     }
@@ -80,6 +84,43 @@ class WBOAuthViewController: UIViewController {
 // MARK: - UIWebViewDelegate
 extension WBOAuthViewController : UIWebViewDelegate{
     
+
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        if request.url?.absoluteString.hasPrefix(WBRedirectUrl) == false {
+            return true
+        }
+        
+        if request.url?.query?.hasPrefix("code=") == false {
+            print("取消授权")
+            close()
+            return false
+        }
+        
+        let code = request.url?.query?.substring(from: "code=".endIndex)
+        
+        print("授权码 - \(String(describing: code))")
+//        换取aceess_token
+        WBNetWorkManager.shared.loadAccessToken(code: code!) { (isSuccess) in
+            
+            if isSuccess{
+             
+                self.close()
+            }
+            
+        }
+        
+        
+      return false
+        
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        SVProgressHUD.show()
+    }
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        SVProgressHUD.dismiss()
+    }
     
 }
 
