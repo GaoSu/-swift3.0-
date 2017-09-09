@@ -78,7 +78,7 @@ extension WBNetWorkManager{
         let params = ["client_id":WBAppKey,"client_secret":WBAppSecret,"grant_type":"authorization_code","code":code,"redirect_uri":WBRedirectUrl]
         request(method: .POST, URLString: urlString, parameters: params as [String : AnyObject]) { (json, isSuccess) in
             
-            print(json ?? "数据为空")
+           print(json ?? "数据为空")
             
           // 直接利用字典设置userAccount的属性
 //            self.userAccount.yy_modelSet(with: [AnyHashable : Any])
@@ -86,16 +86,43 @@ extension WBNetWorkManager{
             
             print("---\(self.userAccount)")
             
-            self.userAccount .saveUserAccount()
+            self.loadUserInfo(compltion: { (dict:[String : AnyObject]) in
+                print("用户信息\(dict)")
+//                保存用户的昵称和头像
+                self.userAccount.yy_modelSet(with: dict)
+                
+                self.userAccount.saveUserAccount()
+                
+                print("---\(self.userAccount)")
+
+                compltion(isSuccess)
             
-            compltion(isSuccess)
-            
+                
+            })
         }
     }
-    
 }
 
 
+
+//MARK:-用户信息
+extension WBNetWorkManager {
+
+    /// 加载用户信息
+    func loadUserInfo(compltion:@escaping (_ dict:[String : AnyObject])->()){
+    
+        guard let uid = userAccount.uid else { return  }
+        
+        let urlString = "https://api.weibo.com/2/users/show.json"
+        
+        let params = ["uid":uid]
+        
+        tokenRequest(method: .GET, URLString: urlString, parameters: params as [String : AnyObject]) { (json, isSuccess) in
+            
+            compltion((json as? [String : AnyObject]) ?? [:])
+        }
+    }
+}
 
 
 

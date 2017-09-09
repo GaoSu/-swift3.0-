@@ -85,7 +85,7 @@ class WBVisitorView: UIView {
         
      print("登录")
 //    发送全局的通知
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: "没有登录")
     
     }
     

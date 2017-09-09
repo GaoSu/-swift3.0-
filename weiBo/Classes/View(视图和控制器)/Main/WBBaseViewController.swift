@@ -38,6 +38,10 @@ class WBBaseViewController: UIViewController {
 
         setupUI()
         
+//        注册一个通知
+        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess), name: NSNotification.Name(rawValue: WBUserLoginSuccessNotification), object: nil)
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -46,6 +50,20 @@ class WBBaseViewController: UIViewController {
         didSet{
         navItem.title = title
         }
+    }
+    
+    
+    /// 登录成功走的方法
+    func loginSuccess(){
+        
+        print("登录成功");
+//        更新ui 将访客视图替换为表格视图
+//        当view= nil 会调用loadView -》 viewdidload
+//        
+        view = nil
+//        取消注册通知
+        NotificationCenter.default.removeObserver(self)//防止通知重复注册
+        
     }
     
     /// 加载数据，让子类重写吧
@@ -74,8 +92,6 @@ extension WBBaseViewController{
     setupTableView()
     WBNetWorkManager.shared.userLogOn ? setupTableView() : setupVistorView()
   
-        
-        
     }
     
     /// 设置访客视图
@@ -86,6 +102,8 @@ extension WBBaseViewController{
         view.insertSubview(vistorView, belowSubview: nagvgationBar)
         
         vistorView.visitorInfo = vistorViewDictory as [String : AnyObject]
+        
+        
         
     }
     

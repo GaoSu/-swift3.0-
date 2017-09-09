@@ -9,8 +9,6 @@
 import UIKit
 
 extension UIBarButtonItem{
-
-    
     /// 创建UIBarButtonItem
     ///
     /// - Parameters:
@@ -28,10 +26,10 @@ extension UIBarButtonItem{
      3、在便利构造函数中需要明确的调用self.init()
      
      */
-    
+//    convenience init(<#parameters#>) {
+//        <#statements#>
+//    }
      convenience init(title:String, fontSize:CGFloat = 16,target: Any?,action:Selector,isBack:Bool = false) {
-    
-
          self.init()
         let btn : UIButton = UIButton.yw_textButton(title, fontSize: fontSize, normalColor: UIColor.darkGray, highlightedColor: UIColor.orange)
         
@@ -45,8 +43,6 @@ extension UIBarButtonItem{
         btn.addTarget(target, action: action, for: .touchUpInside) 
         
         self.customView = btn
-       
-//        self.init(customView:btn)
+
     }
-    
 }

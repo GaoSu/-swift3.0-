@@ -44,7 +44,10 @@ class WBNetWorkManager: AFHTTPSessionManager {
 //       0> 处理token
         guard userAccount.access_token != nil else {
             print("没有token，需要登录")
-//                FIXME：发送通知。需要登录
+//                ：发送通知。需要登录
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
+            
             compltion(nil, false)
             return
         }
@@ -80,6 +83,7 @@ class WBNetWorkManager: AFHTTPSessionManager {
                 print("Token 过期了")
                 
 //                FIXME：发送通知。token过期
+                NotificationCenter.default.post(name:Notification.Name(rawValue: WBUserShouldLoginNotification) , object:"bad token")
             }
             print("请求失败")
             compltion(nil, false)

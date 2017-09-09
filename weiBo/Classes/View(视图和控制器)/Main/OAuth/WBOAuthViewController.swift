@@ -24,6 +24,8 @@ class WBOAuthViewController: UIViewController {
 //        设置导航栏  在这里可以在后面加上isBack 之后就会有返回的箭头
 
 //       
+        
+//        UIBarButtonItem(
         navigationItem.leftBarButtonItem =  UIBarButtonItem(title: "返回", fontSize: 16, target: self, action: #selector(close), isBack: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "自动填充", fontSize: 16, target: self, action: #selector(autoFill), isBack: false)
         
@@ -103,9 +105,20 @@ extension WBOAuthViewController : UIWebViewDelegate{
 //        换取aceess_token
         WBNetWorkManager.shared.loadAccessToken(code: code!) { (isSuccess) in
             
+
             if isSuccess{
-             
+//                SVProgressHUD.show(withStatus: "登陆成功")
+//                SVProgressHUD.showInfo(withStatus: "登录成功")
+//                发送通知
+//                只管发送，不管有没有监听者
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: WBUserLoginSuccessNotification), object: nil)
+
                 self.close()
+            }else{
+//            失败的时候提示用户
+                 SVProgressHUD.showInfo(withStatus: "网络请求失败")
+//              SVProgressHUD.setStatus("网络请求失败")
+                
             }
             
         }

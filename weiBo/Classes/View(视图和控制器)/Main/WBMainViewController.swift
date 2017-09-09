@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class WBMainViewController: UITabBarController {
 
  //WARNING: 为什么永不了私有的变量
@@ -44,15 +44,38 @@ class WBMainViewController: UITabBarController {
     
     
 //   用户登录的方法
-    @objc fileprivate func userLogin(n:Notification){
+     @objc fileprivate func userLogin(n:Notification){
     
         print("用户登录")
     
-        let nav = UINavigationController(rootViewController: WBOAuthViewController())
+        var when = DispatchTime.now()
         
-        present(nav, animated: true, completion: nil)
+        if n.object == nil {
+            
+            SVProgressHUD.setDefaultMaskType(.black)
+            
+            //    提示token无效
+            SVProgressHUD.showInfo(withStatus: "用户登录已失效，需要重新登录")
+
+            when = DispatchTime.now() + 2
+        }
+        
+        
+        
+//     延迟两秒
+        DispatchQueue.main.asyncAfter(deadline: when) {
+          
+            SVProgressHUD.setDefaultMaskType(.clear)
+            let nav = UINavigationController(rootViewController: WBOAuthViewController())
+            
+            self.present(nav, animated: true, completion: nil)
+
+        }
+        
         
     
+        
+        
     }
     
     /// 发布的方法
