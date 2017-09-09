@@ -23,6 +23,7 @@
 		5A61C5461E17BCE100D25B24 /* WBMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61C5451E17BCE100D25B24 /* WBMessageViewController.swift */; };
 		5A61C5481E17BCEB00D25B24 /* WBProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61C5471E17BCEB00D25B24 /* WBProfileViewController.swift */; };
 		5A6471B71E1C842200D0099F /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6471B61E1C842200D0099F /* UIBarButtonItem+Extension.swift */; };
+		5A667AC21F64409500B6B72C /* WBTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A667AC11F64409500B6B72C /* WBTitleButton.swift */; };
 		5A82F16A1E1D4CEF003E1FC5 /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82F1691E1D4CEF003E1FC5 /* WBVisitorView.swift */; };
 		5AAA2EE21E1BEEE30093EF3E /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAA2EE11E1BEEE30093EF3E /* Bundle+Extension.swift */; };
 		5ABBBFA71E1BA365000BD56A /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBBF8C1E1BA365000BD56A /* NSArray+Log.m */; };
@@ -87,6 +88,7 @@
 		5A61C5451E17BCE100D25B24 /* WBMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMessageViewController.swift; sourceTree = "<group>"; };
 		5A61C5471E17BCEB00D25B24 /* WBProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBProfileViewController.swift; sourceTree = "<group>"; };
 		5A6471B61E1C842200D0099F /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		5A667AC11F64409500B6B72C /* WBTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBTitleButton.swift; sourceTree = "<group>"; };
 		5A82F1691E1D4CEF003E1FC5 /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 		5AAA2EE11E1BEEE30093EF3E /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		5ABBBF8A1E1BA365000BD56A /* CZAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZAdditions.h; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		5A61C5341E17BB6F00D25B24 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5A667AC01F64407A00B6B72C /* TitleButton */,
 				5A61C5411E17BCC900D25B24 /* WBHomeViewController.swift */,
 			);
 			path = Home;
@@ -306,6 +309,14 @@
 				5A61C5471E17BCEB00D25B24 /* WBProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		5A667AC01F64407A00B6B72C /* TitleButton */ = {
+			isa = PBXGroup;
+			children = (
+				5A667AC11F64409500B6B72C /* WBTitleButton.swift */,
+			);
+			path = TitleButton;
 			sourceTree = "<group>";
 		};
 		5A82F1631E1D4C86003E1FC5 /* VisitorView */ = {
@@ -625,6 +636,7 @@
 				5ABBBFA91E1BA365000BD56A /* NSObject+CZRuntime.m in Sources */,
 				5A6471B71E1C842200D0099F /* UIBarButtonItem+Extension.swift in Sources */,
 				5A61C5421E17BCC900D25B24 /* WBHomeViewController.swift in Sources */,
+				5A667AC21F64409500B6B72C /* WBTitleButton.swift in Sources */,
 				5A61C53E1E17BC5B00D25B24 /* WBNavigationViewController.swift in Sources */,
 				5A004F6C1F5D92DD0001F208 /* WBOAuthViewController.swift in Sources */,
 				5ABBBFB11E1BA365000BD56A /* UIScreen+CZAddition.m in Sources */,

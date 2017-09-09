@@ -116,5 +116,36 @@ extension WBHomeViewController{
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier:cellId)
         //取消分割线
         tableView?.separatorStyle = .none
+        
+        navItem.leftBarButtonItem = UIBarButtonItem(title: "好友", fontSize: 16, target: self, action: #selector(clickFriend), isBack:false)
+        
+        setupNavTitle()
+    }
+    
+    /// 点击好友
+    @objc fileprivate func clickFriend(){
+    
+        
+    }
+    
+    /// 设置导航标题
+    fileprivate func setupNavTitle(){
+    
+        let title = WBNetWorkManager.shared.userAccount.screen_name
+        
+        let button = WBTitleButton(title: title)
+    
+        navItem.titleView = button
+        button.addTarget(self, action: #selector(clickTitleButton), for: .touchUpInside)
+    }
+    
+    
+    /// 导航标题的点击方法
+    ///
+    /// - Parameter button: button
+    @objc fileprivate func clickTitleButton(button:WBTitleButton){
+    
+        button.isSelected = !button.isSelected
     }
 }
+
