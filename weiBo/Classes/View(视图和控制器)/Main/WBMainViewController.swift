@@ -23,6 +23,8 @@ class WBMainViewController: UITabBarController {
         
         setupPublishBtn()
         
+        setupNewFeature()
+        
         setupTimer()
         
         delegate = self
@@ -242,5 +244,45 @@ extension WBMainViewController{
 
 }
 
+
+// MARK: - 设置新特性
+extension  WBMainViewController {
+
+    func setupNewFeature(){
+//        如果没有登录就返回
+        if !WBNetWorkManager.shared.userLogOn {
+            return
+        }
+        
+        
+        let v = isNewFeature ? WBNewFeatureView.newFeatureV():WBWelcomeView.welcomeV()
+        
+        view.addSubview(v)
+        
+    }
+
+    
+     ///在extension 中可以存在计算性属性
+     fileprivate var isNewFeature : Bool{
+//        取出版本号进行比较
+        let oldVersion = UserDefaults.standard.value(forKey: WBVersion) as? String
+//    版本号
+        let dict = Bundle.main.infoDictionary
+        let versionString = dict?["CFBundleShortVersionString"] as? String
+        UserDefaults.standard.set(versionString, forKey: WBVersion)
+        UserDefaults.standard.synchronize()//同步到磁盘
+         print("\(String(describing: dict))")
+
+//        进行比较
+        if versionString == oldVersion {
+            return false
+        }else{
+            return true
+        }
+        
+
+    }
+    
+}
 
 

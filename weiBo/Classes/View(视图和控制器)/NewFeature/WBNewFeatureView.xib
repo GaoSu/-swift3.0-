@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WBNewFeatureView" customModule="weiBo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjd-qy-1Sg">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </scrollView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE7-to-8KP">
+                    <rect key="frame" x="134.5" y="471" width="105" height="36"/>
+                    <state key="normal" title="进入微博" backgroundImage="new_feature_finish_button">
+                        <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                    </state>
+                    <connections>
+                        <action selector="enterClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="KCP-f8-p65"/>
+                    </connections>
+                </button>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="AWn-dm-CSq">
+                    <rect key="frame" x="160" y="517" width="55" height="37"/>
+                    <color key="pageIndicatorTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <color key="currentPageIndicatorTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </pageControl>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lE7-to-8KP" secondAttribute="bottom" constant="160" id="8Rc-3D-y4O"/>
+                <constraint firstItem="AWn-dm-CSq" firstAttribute="centerX" secondItem="lE7-to-8KP" secondAttribute="centerX" id="DDd-5z-z5R"/>
+                <constraint firstAttribute="trailing" secondItem="sjd-qy-1Sg" secondAttribute="trailing" id="Fyq-BC-leO"/>
+                <constraint firstItem="lE7-to-8KP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Yxj-Zf-0wc"/>
+                <constraint firstAttribute="bottom" secondItem="sjd-qy-1Sg" secondAttribute="bottom" id="afD-v7-jhV"/>
+                <constraint firstItem="sjd-qy-1Sg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hC0-Fl-0mU"/>
+                <constraint firstItem="AWn-dm-CSq" firstAttribute="top" secondItem="lE7-to-8KP" secondAttribute="bottom" constant="10" id="jNt-su-Rbj"/>
+                <constraint firstItem="sjd-qy-1Sg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="r3T-F2-2nE"/>
+            </constraints>
+            <connections>
+                <outlet property="enterButton" destination="lE7-to-8KP" id="bFB-AC-0bi"/>
+                <outlet property="pageControl" destination="AWn-dm-CSq" id="wUq-Jf-Xh1"/>
+                <outlet property="scrollView" destination="sjd-qy-1Sg" id="ZZi-bD-Fqh"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="new_feature_finish_button" width="105" height="36"/>
+    </resources>
+</document>

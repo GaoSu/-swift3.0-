@@ -24,6 +24,10 @@
 		5A61C5481E17BCEB00D25B24 /* WBProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61C5471E17BCEB00D25B24 /* WBProfileViewController.swift */; };
 		5A6471B71E1C842200D0099F /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6471B61E1C842200D0099F /* UIBarButtonItem+Extension.swift */; };
 		5A667AC21F64409500B6B72C /* WBTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A667AC11F64409500B6B72C /* WBTitleButton.swift */; };
+		5A667AC51F6531CB00B6B72C /* WBWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A667AC41F6531CB00B6B72C /* WBWelcomeView.swift */; };
+		5A667AC71F65321700B6B72C /* WBNewFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A667AC61F65321700B6B72C /* WBNewFeatureView.swift */; };
+		5A667AC91F6539B400B6B72C /* WBWelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A667AC81F6539B400B6B72C /* WBWelcomeView.xib */; };
+		5A667ACB1F6539C800B6B72C /* WBNewFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A667ACA1F6539C800B6B72C /* WBNewFeatureView.xib */; };
 		5A82F16A1E1D4CEF003E1FC5 /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82F1691E1D4CEF003E1FC5 /* WBVisitorView.swift */; };
 		5AAA2EE21E1BEEE30093EF3E /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAA2EE11E1BEEE30093EF3E /* Bundle+Extension.swift */; };
 		5ABBBFA71E1BA365000BD56A /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBBF8C1E1BA365000BD56A /* NSArray+Log.m */; };
@@ -89,6 +93,10 @@
 		5A61C5471E17BCEB00D25B24 /* WBProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBProfileViewController.swift; sourceTree = "<group>"; };
 		5A6471B61E1C842200D0099F /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		5A667AC11F64409500B6B72C /* WBTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBTitleButton.swift; sourceTree = "<group>"; };
+		5A667AC41F6531CB00B6B72C /* WBWelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBWelcomeView.swift; sourceTree = "<group>"; };
+		5A667AC61F65321700B6B72C /* WBNewFeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNewFeatureView.swift; sourceTree = "<group>"; };
+		5A667AC81F6539B400B6B72C /* WBWelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBWelcomeView.xib; sourceTree = "<group>"; };
+		5A667ACA1F6539C800B6B72C /* WBNewFeatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBNewFeatureView.xib; sourceTree = "<group>"; };
 		5A82F1691E1D4CEF003E1FC5 /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 		5AAA2EE11E1BEEE30093EF3E /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		5ABBBF8A1E1BA365000BD56A /* CZAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZAdditions.h; sourceTree = "<group>"; };
@@ -258,6 +266,7 @@
 		5A61C5321E17BB6F00D25B24 /* View(视图和控制器) */ = {
 			isa = PBXGroup;
 			children = (
+				5A667AC31F65318E00B6B72C /* NewFeature */,
 				5A61C5351E17BB6F00D25B24 /* Main */,
 				5A61C5331E17BB6F00D25B24 /* Discover */,
 				5A61C5341E17BB6F00D25B24 /* Home */,
@@ -317,6 +326,17 @@
 				5A667AC11F64409500B6B72C /* WBTitleButton.swift */,
 			);
 			path = TitleButton;
+			sourceTree = "<group>";
+		};
+		5A667AC31F65318E00B6B72C /* NewFeature */ = {
+			isa = PBXGroup;
+			children = (
+				5A667AC41F6531CB00B6B72C /* WBWelcomeView.swift */,
+				5A667AC81F6539B400B6B72C /* WBWelcomeView.xib */,
+				5A667AC61F65321700B6B72C /* WBNewFeatureView.swift */,
+				5A667ACA1F6539C800B6B72C /* WBNewFeatureView.xib */,
+			);
+			path = NewFeature;
 			sourceTree = "<group>";
 		};
 		5A82F1631E1D4C86003E1FC5 /* VisitorView */ = {
@@ -539,6 +559,8 @@
 			files = (
 				5A61C5091E17B7DC00D25B24 /* Assets.xcassets in Resources */,
 				5A3413BC1F493E2200BC6614 /* demo.plist in Resources */,
+				5A667AC91F6539B400B6B72C /* WBWelcomeView.xib in Resources */,
+				5A667ACB1F6539C800B6B72C /* WBNewFeatureView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +665,8 @@
 				5ABBBFAC1E1BA365000BD56A /* NSString+CZPath.m in Sources */,
 				5ABBBFAB1E1BA365000BD56A /* NSString+CZHash.m in Sources */,
 				5A61C5021E17B7DC00D25B24 /* AppDelegate.swift in Sources */,
+				5A667AC51F6531CB00B6B72C /* WBWelcomeView.swift in Sources */,
+				5A667AC71F65321700B6B72C /* WBNewFeatureView.swift in Sources */,
 				5ABBBFB21E1BA365000BD56A /* UIView+CZAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

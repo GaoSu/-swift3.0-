@@ -19,6 +19,14 @@ let WBAppSecret = "9f64187db48727e30599945386f36f63"
 /// 回调地址
 let WBRedirectUrl = "http://baidu.com"
 
+let WBVersion = "WBVersion"
+
+
+/// 屏幕宽
+let WBScreenWidth = UIScreen.main.bounds.width
+
+/// 屏幕高
+let WBScreenHeight = UIScreen.main.bounds.height
 
 
 //MARK:-全局通知定义

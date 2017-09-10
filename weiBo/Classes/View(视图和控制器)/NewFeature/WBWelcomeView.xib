@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WBWelcomeView" customModule="weiBo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ad_background" translatesAutoresizingMaskIntoConstraints="NO" id="8u0-ty-1Dg">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vga-O6-FtS">
+                    <rect key="frame" x="145" y="422" width="85" height="85"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="85" id="12L-it-Bgl"/>
+                        <constraint firstAttribute="width" constant="85" id="wWP-zc-yyU"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小刀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f8-Ux-vlF">
+                    <rect key="frame" x="169.5" y="517" width="35" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="vga-O6-FtS" secondAttribute="bottom" constant="160" id="8Z6-eL-ZaQ"/>
+                <constraint firstItem="5f8-Ux-vlF" firstAttribute="centerX" secondItem="vga-O6-FtS" secondAttribute="centerX" id="9FF-jC-9YI"/>
+                <constraint firstAttribute="trailing" secondItem="8u0-ty-1Dg" secondAttribute="trailing" id="JWu-Tl-T6a"/>
+                <constraint firstAttribute="bottom" secondItem="8u0-ty-1Dg" secondAttribute="bottom" id="KAQ-28-fZK"/>
+                <constraint firstItem="8u0-ty-1Dg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NSJ-nC-euY"/>
+                <constraint firstItem="5f8-Ux-vlF" firstAttribute="top" secondItem="vga-O6-FtS" secondAttribute="bottom" constant="10" id="cwu-nr-rdz"/>
+                <constraint firstItem="vga-O6-FtS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fgV-Xc-HdH"/>
+                <constraint firstItem="8u0-ty-1Dg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wwk-W5-ohk"/>
+            </constraints>
+            <connections>
+                <outlet property="iconBottom" destination="8Z6-eL-ZaQ" id="D5X-sx-7vE"/>
+                <outlet property="iconImageView" destination="vga-O6-FtS" id="12a-lr-yW9"/>
+                <outlet property="nameLabel" destination="5f8-Ux-vlF" id="U37-WM-pLH"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="ad_background" width="375" height="667"/>
+    </resources>
+</document>
